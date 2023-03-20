@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { NavigationBar } from "./components/NavigationBar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Home } from "./components/Homepage/Home";
+import { Global } from "./components/GlobalPage/Global";
+import { News } from "./components/NewsPage/News";
+
+import { useState, createContext } from "react";
+export const AppContext = createContext();
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    const [allCoins, setAllCoins] = useState([]);
+    const [globalStatData, setGlobalStatData] = useState(null);
+    const [best3CoinsData, setBest3CoinsData] = useState([]);
+    const [newest3CoinsData, setNewest3CoinsData] = useState([]);
+    const [newsData, setNewsData] = useState([]);
+
+    return (
+        <AppContext.Provider
+            value={{
+                allCoins,
+                setAllCoins,
+                globalStatData,
+                setGlobalStatData,
+                best3CoinsData,
+                setBest3CoinsData,
+                newest3CoinsData,
+                setNewest3CoinsData,
+                newsData,
+                setNewsData
+            }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+            <BrowserRouter>
+                <NavigationBar />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/global" element={<Global />} />
+                    <Route path="/news" element={<News />} />
+                </Routes>
+            </BrowserRouter>
+        </AppContext.Provider>
+    );
 }
 
 export default App;
