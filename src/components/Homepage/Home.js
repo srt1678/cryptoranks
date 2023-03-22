@@ -5,9 +5,12 @@ import Col from "react-bootstrap/Col";
 import { AppContext } from "../../App";
 import { ChevronUp, ChevronDown } from "react-bootstrap-icons";
 import { apiKey, allCoinsUrl } from "../../Api";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
     const { allCoins, setAllCoins } = useContext(AppContext);
+    const navigate = useNavigate();
+
     const options = {
         headers: {
             "Content-Type": "application/json",
@@ -22,12 +25,16 @@ export const Home = () => {
             });
     }, []);
 
+    const handleCryptoSelect = (symbol) => {
+        navigate(`detail/${symbol}`)
+    }
+
     return (
-        <section id="topCrypto">
+        <section id="topCrypto" className='mb-5'>
             <h1 className="homePageTitle my-5">Top 20 Cryptos In the World</h1>
-            <Container fluid className="cryptoCardOverallContainer px-5">
+            <Container fluid className="cryptoCardOverallContainer px-3">
                 <Row className="cryptoCardRow">
-                    {allCoins.map((singleCoin) => {
+                    {allCoins.slice(0,20).map((singleCoin) => {
                         const {
                             uuid,
                             name,
@@ -36,14 +43,16 @@ export const Home = () => {
                             change,
                             iconUrl,
                             rank,
+                            symbol
                         } = singleCoin;
                         return (
                             <Col
                                 key={uuid}
                                 className="cryptoCardCol py-3"
+                                sm={2}
                                 xxl={3}
                             >
-                                <div className="cryptoCard">
+                                <div className="cryptoCard" onClick={() => handleCryptoSelect(symbol.toLowerCase())}>
                                     <Col className="cryptoCardCol1 ps-4">
                                         <div className='cryptoCardNameDiv'>
                                             <h3 className="cryptoCardName my-2">

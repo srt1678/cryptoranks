@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "./components/Homepage/Home";
 import { Global } from "./components/GlobalPage/Global";
 import { News } from "./components/NewsPage/News";
+import { CryptoDetail } from './components/CyrptoDetailPage/CryptoDetail'
 
 import { useState, createContext } from "react";
 export const AppContext = createContext();
@@ -36,6 +37,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/global" element={<Global />} />
                     <Route path="/news" element={<News />} />
+                    <Route path="/detail/:symbol" element={<CryptoDetail/>} />
                 </Routes>
             </BrowserRouter>
         </AppContext.Provider>

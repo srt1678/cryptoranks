@@ -11,7 +11,7 @@ export const NavigationBar = () => {
                     <img
                         src={cryptoLogo}
                         alt="Crypto Logo"
-                        className="img-fluid pe-4"
+                        className="navBarLogo img-fluid pe-4"
                         width={100}
                     />
                     Cryptoranks

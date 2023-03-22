@@ -1,4 +1,4 @@
-*{
+* {
     padding: 0;
     margin: 0;
     border: 0;
@@ -8,36 +8,35 @@
     text-decoration: none;
     color: var(--color-white);
 }
-:root{
-    --color-navBar: rgba(33,37,41);
+:root {
+    --color-navBar: rgba(33, 37, 41);
     --color-bg: rgb(19, 27, 34);
     --color-white: rgb(231, 229, 229);
 }
 
-body{
+body {
     background-color: var(--color-bg);
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
 }
-h5{
+h5 {
     font-weight: 400;
 }
-.navbar{
+.navbar {
     border-bottom: solid 1px var(--color-white);
 }
 
-
 /*Home Page*/
-.homePageTitle{
+.homePageTitle {
     display: flex;
     justify-content: center;
 }
-.cryptoCardRow{
+.cryptoCardRow {
     justify-content: space-evenly;
 }
-.cryptoCardCol{
+.cryptoCardCol {
     width: 430px;
 }
-.cryptoCard{
+.cryptoCard {
     background: linear-gradient(to bottom, #3145b6, #610e53);
     width: auto;
     height: 150px;
@@ -51,121 +50,244 @@ h5{
     outline-offset: -5px;
     overflow: hidden;
 }
-.cryptoCard:hover{
+.cryptoCard:hover {
     box-shadow: 0px 0px 10px var(--color-white);
     transition: 0.3s ease-in-out;
-	cursor: pointer;
+    cursor: pointer;
     transform: scale(1.05) !important;
 }
-.cryptoCardCol1{
+.cryptoCardCol1 {
     height: 85%;
 }
-.cryptoCardNameDiv{
+.cryptoCardNameDiv {
     height: 40px;
 }
-.cryptoCardName{
+.cryptoCardName {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box !important;
-	-webkit-line-clamp: 1;
-	-webkit-box-orient: vertical;
-	white-space: normal;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    white-space: normal;
 }
-.cryptoCardCol1 .cryptoCardData{
+.cryptoCardCol1 .cryptoCardData {
     float: left;
 }
-.cryptoCardCol1 .cryptoCardDataNum{
+.cryptoCardCol1 .cryptoCardDataNum {
     float: right;
 }
-.cryptoCardCol2{
+.cryptoCardCol2 {
     display: flex;
     justify-content: center;
     align-items: center;
     padding-left: 20px;
 }
-.cryptoCardIcon{
+.cryptoCardIcon {
     overflow: hidden;
     padding-right: 30px;
 }
+@media screen and (max-width: 400px) {
+    .navBarLogo {
+        width: 80px;
+    }
+}
+@media screen and (max-width: 886px) {
+    .cryptoCardCol {
+        width: 400px;
+    }
+}
+@media screen and (max-width: 700px) {
+    .cryptoCardIcon {
+        padding-right: 20px;
+    }
+}
 
 /*Global Page*/
-.globalStatPageTitle{
+.globalStatPageTitle {
     display: flex;
     justify-content: center;
 }
-.globalStatTitle{
+.globalStatTitle {
     color: rgb(168, 164, 164);
 }
-@media screen and (min-width: 1200px){
-    .globalStatContainer{
+@media screen and (min-width: 1200px) {
+    .globalStatContainer {
         padding-left: 200px;
     }
 }
-@media screen and (max-width: 1200px){
-    .globalStatContainer{
+@media screen and (max-width: 1200px) {
+    .globalStatContainer {
         padding-left: 100px;
         padding-right: 100px;
     }
-    .globalStatTitle{
+    .globalStatTitle {
         float: left;
     }
-    .globalStatNum{
+    .globalStatNum {
         float: right;
     }
 }
-@media screen and (max-width: 767px){
-    .globalStatContainer{
+@media screen and (max-width: 767px) {
+    .globalStatContainer {
         padding-left: 50px;
         padding-right: 50px;
     }
 }
-.currentBest3CoinsContainer > .cryptoCardRow > .cryptoCardCol > .cryptoCard{
+.currentBest3CoinsContainer > .cryptoCardRow > .cryptoCardCol > .cryptoCard {
     background: linear-gradient(to bottom, #69d9e7, #75051c);
 }
-.currentNewest3CoinsContainer > .cryptoCardRow > .cryptoCardCol > .cryptoCard{
+.currentNewest3CoinsContainer > .cryptoCardRow > .cryptoCardCol > .cryptoCard {
     background: linear-gradient(to bottom, #dbcd04, #195a32);
 }
-.current3NewestCoinsSection{
+.current3NewestCoinsSection {
     padding-bottom: 100px;
 }
 
 /*News Page*/
-.newsCardContainer:hover{
+.newsCardContainer:hover {
     box-shadow: 0px 0px 10px var(--color-white);
     transition: 0.3s ease-in-out;
-	cursor: pointer;
+    cursor: pointer;
     transform: scale(1.05) !important;
 }
-.newsCardImage{
+.newsCardImage {
     height: 15rem;
 }
-.newsCardTitle{
+.newsCardTitle {
     font-weight: 500;
     height: 3rem;
 }
-.newsCardAuthor{
+.newsCardAuthor {
     float: left;
     width: 10rem;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box !important;
-	-webkit-line-clamp: 1;
-	-webkit-box-orient: vertical;
-	white-space: normal;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    white-space: normal;
 }
-.newsCardTitle, .newsCardDescription{
+.newsCardTitle,
+.newsCardDescription {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box !important;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
-	white-space: normal;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
 }
-.newsCardDescription{
+.newsCardDescription {
     -webkit-line-clamp: 3;
     height: 4.5rem;
 }
-.newsCardDescription, .newsCardFooter > span{
-    color:rgb(189, 186, 186);
+.newsCardDescription,
+.newsCardFooter > span {
+    color: rgb(189, 186, 186);
     font-weight: 400;
+}
+
+/*CryptoDetail Page*/
+.cryptoDetailCol1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 40px;
+}
+.cryptoDetailCard {
+    position: relative;
+    width: 300px;
+    height: 350px;
+    margin: 30px;
+    background: linear-gradient(to bottom, #cc00ff, #57eee6);
+    border-radius: 20px;
+    border-bottom-left-radius: 160px;
+    border-bottom-right-radius: 160px;
+    box-shadow: 10px 15px 15px var(--color-white),
+        inset 0 -15px 0 rgba(255, 255, 255, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: hidden;
+}
+.cryptoDetailCard::before {
+    content: "";
+    position: absolute;
+    top: -140px;
+    left: -40%;
+    width: 100%;
+    height: 150%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2));
+    transform: rotate(35deg);
+    pointer-events: none;
+    filter: blur(5px);
+}
+.cryptoDetailCardIcon {
+    position: relative;
+    width: 140px;
+    height: 120px;
+    background: var(--color-bg);
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 10px 0 rgba(0, 0, 0, 0.1), inset 0 -8px 0 var(--color-white);
+    display: flex;
+}
+.cryptoDetailCardIcon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50px;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-top-right-radius: 50px;
+    box-shadow: 15px -15px 0 15px var(--color-bg);
+}
+.cryptoDetailCardIcon::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -50px;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-top-left-radius: 50px;
+    box-shadow: -15px -15px 0 15px var(--color-bg);
+}
+.cryptoDetailCardIcon > img {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    z-index: 100;
+}
+.cryptoDetailCardContent {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    padding-top: 140px;
+    text-align: center;
+    overflow-wrap: break-word;
+}
+.cryptoDetailCardTitle{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cryptoDetailCardTitle > h1 {
+    font-weight: 600;
+    letter-spacing: 3px;
+    overflow: hidden;
+    font-size: 30px;
+}
+
+.cryptoDetailCol2 {
+    background-color: aquamarine;
+}
+.cryptoDetailCol3 {
+    background-color: #75051c;
 }
