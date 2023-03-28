@@ -11,16 +11,20 @@ export const AppContext = createContext();
 
 function App() {
     const [allCoins, setAllCoins] = useState([]);
+    const [selectSingleCoin, setSelectSingleCoin] = useState('');
     const [globalStatData, setGlobalStatData] = useState(null);
     const [best3CoinsData, setBest3CoinsData] = useState([]);
     const [newest3CoinsData, setNewest3CoinsData] = useState([]);
     const [newsData, setNewsData] = useState([]);
+    const [singleCoinDetail, setSingleCoinDetail] = useState(null);
 
     return (
         <AppContext.Provider
             value={{
                 allCoins,
                 setAllCoins,
+                selectSingleCoin,
+                setSelectSingleCoin,
                 globalStatData,
                 setGlobalStatData,
                 best3CoinsData,
@@ -28,7 +32,9 @@ function App() {
                 newest3CoinsData,
                 setNewest3CoinsData,
                 newsData,
-                setNewsData
+                setNewsData,
+                singleCoinDetail,
+                setSingleCoinDetail
             }}
         >
             <BrowserRouter>
@@ -37,7 +43,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/global" element={<Global />} />
                     <Route path="/news" element={<News />} />
-                    <Route path="/detail/:symbol" element={<CryptoDetail/>} />
+                    <Route path="/detail/:uuid" element={<CryptoDetail/>} />
                 </Routes>
             </BrowserRouter>
         </AppContext.Provider>

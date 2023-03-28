@@ -6,9 +6,11 @@ import { AppContext } from "../../App";
 import { ChevronUp, ChevronDown } from "react-bootstrap-icons";
 import { apiKey, allCoinsUrl } from "../../Api";
 import { useNavigate } from "react-router-dom";
+import millify from "millify";
 
 export const Home = () => {
-    const { allCoins, setAllCoins } = useContext(AppContext);
+    const { setSelectSingleCoin, allCoins, setAllCoins } =
+        useContext(AppContext);
     const navigate = useNavigate();
 
     const options = {
@@ -25,16 +27,17 @@ export const Home = () => {
             });
     }, []);
 
-    const handleCryptoSelect = (symbol) => {
-        navigate(`detail/${symbol}`)
-    }
+    const handleCryptoSelect = (uuid) => {
+        setSelectSingleCoin(uuid);
+        navigate(`detail/${uuid}`);
+    };
 
     return (
-        <section id="topCrypto" className='mb-5'>
+        <section id="topCrypto" className="mb-5">
             <h1 className="homePageTitle my-5">Top 20 Cryptos In the World</h1>
             <Container fluid className="cryptoCardOverallContainer px-3">
                 <Row className="cryptoCardRow">
-                    {allCoins.slice(0,20).map((singleCoin) => {
+                    {allCoins.slice(0, 20).map((singleCoin) => {
                         const {
                             uuid,
                             name,
@@ -43,7 +46,6 @@ export const Home = () => {
                             change,
                             iconUrl,
                             rank,
-                            symbol
                         } = singleCoin;
                         return (
                             <Col
@@ -52,9 +54,12 @@ export const Home = () => {
                                 sm={2}
                                 xxl={3}
                             >
-                                <div className="cryptoCard" onClick={() => handleCryptoSelect(symbol.toLowerCase())}>
+                                <div
+                                    className="cryptoCard"
+                                    onClick={() => handleCryptoSelect(uuid)}
+                                >
                                     <Col className="cryptoCardCol1 ps-4">
-                                        <div className='cryptoCardNameDiv'>
+                                        <div className="cryptoCardNameDiv">
                                             <h3 className="cryptoCardName my-2">
                                                 {rank}. {name}
                                             </h3>
@@ -63,19 +68,16 @@ export const Home = () => {
                                             Price:
                                         </span>
                                         <span className="cryptoCardDataNum">
-                                            $ {Math.round(price * 100) / 100}
+                                            $ {millify(price)}
                                         </span>
-                                        <br/>
+                                        <br />
                                         <span className="cryptoCardData fs-6 ps-3">
                                             Market Cap:
                                         </span>
                                         <span className="cryptoCardDataNum">
-                                            ${" "}
-                                            {Math.round(
-                                                (marketCap / 1000000000) * 100
-                                            ) / 100}
+                                            $ {millify(marketCap)}
                                         </span>
-                                        <br/>
+                                        <br />
                                         <span className="cryptoCardData fs-6 ps-3">
                                             Daily Change:
                                         </span>
@@ -117,5 +119,3 @@ export const Home = () => {
         </section>
     );
 };
-
-

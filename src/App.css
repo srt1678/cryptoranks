@@ -192,12 +192,11 @@ h5 {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    padding: 40px;
 }
 .cryptoDetailCard {
     position: relative;
     width: 300px;
-    height: 350px;
+    height: 400px;
     margin: 30px;
     background: linear-gradient(to bottom, #cc00ff, #57eee6);
     border-radius: 20px;
@@ -284,10 +283,40 @@ h5 {
     overflow: hidden;
     font-size: 30px;
 }
-
-.cryptoDetailCol2 {
-    background-color: aquamarine;
+.cryptoDetailStat1{
+    height: 90%;
+    background-color: rgb(34, 39, 44);
+    border: solid 1px var(--color-white);
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px var(--color-white);
 }
-.cryptoDetailCol3 {
-    background-color: #75051c;
+.cryptoDetailStat1ValueStat{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 2px;
+}
+.cryptoDetailStat1Data{
+}
+.cryptoDetailStat1Data > h5{
+    margin-top: 30px;
+}
+.cryptoDetailStat1Title{
+    float: left;
+    color: rgb(177, 174, 174);
+}
+@media screen and (max-width: 1200px) {
+    .cryptoDetailStat1Data{
+        padding-bottom: 30px;
+    }
+}
+
+.cryptoDetailDescription{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cryptoDetailDescript{
+    box-shadow: 0px 0px 15px var(--color-white);
+    letter-spacing: 1px;
 }

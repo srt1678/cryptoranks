@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { ChevronUp, ChevronDown } from "react-bootstrap-icons";
+import millify from "millify";
 
 export const Global = () => {
     const {
@@ -41,16 +42,20 @@ export const Global = () => {
             })
         );
         setBest3CoinsData(temp3BestCoinsArray);
-    }
+    };
     const fetch3NewestCoins = async () => {
-        await Promise.all(globalStatData?.newestCoins?.map(async (singleCoin) => {
-            const response = await fetch(singleCoinUrl + singleCoin.uuid, options);
-            const result = await response.json();
-            temp3NewestCoinsArray.push(result.data.coin);
-        }))
+        await Promise.all(
+            globalStatData?.newestCoins?.map(async (singleCoin) => {
+                const response = await fetch(
+                    singleCoinUrl + singleCoin.uuid,
+                    options
+                );
+                const result = await response.json();
+                temp3NewestCoinsArray.push(result.data.coin);
+            })
+        );
         setNewest3CoinsData(temp3NewestCoinsArray);
-    }
-
+    };
 
     useEffect(() => {
         fetchGlobalStats();
@@ -59,13 +64,12 @@ export const Global = () => {
     useEffect(() => {
         fetch3BestCoins();
         fetch3NewestCoins();
-    }, [globalStatData])
-
+    }, [globalStatData]);
 
     return (
         <>
             {/*Global Stats Section*/}
-            <section id="globalStatSection" className='pb-5'>
+            <section id="globalStatSection" className="pb-5">
                 <h2 className="globalStatPageTitle ps-5 my-5">
                     Global Crypto Statistics
                 </h2>
@@ -91,12 +95,7 @@ export const Global = () => {
                                 Total Market Cap
                             </h5>
                             <h3 className="globalStatNum">
-                                {Math.round(
-                                    (globalStatData?.totalMarketCap /
-                                        1000000000000) *
-                                        100
-                                ) / 100}
-                                T
+                                {millify(globalStatData?.totalMarketCap)}
                             </h3>
                         </Col>
                     </Row>
@@ -106,21 +105,13 @@ export const Global = () => {
                                 Total 24hr Volume
                             </h5>
                             <h3 className="globalStatNum">
-                                {Math.round(
-                                    (globalStatData?.total24hVolume /
-                                        1000000000) *
-                                        100
-                                ) / 100}
-                                B
+                                {millify(globalStatData?.total24hVolume)}
                             </h3>
                         </Col>
                         <Col xl className="my-2">
                             <h5 className="globalStatTitle">Total Markets </h5>
                             <h3 className="globalStatNum">
-                                {Math.round(
-                                    (globalStatData?.totalMarkets / 1000) * 100
-                                ) / 100}
-                                K
+                                {millify(globalStatData?.totalMarkets)}
                             </h3>
                         </Col>
                         <Col xl></Col>
@@ -129,7 +120,7 @@ export const Global = () => {
             </section>
 
             {/*Current 3 Best Coins Section */}
-            <section id="current3BestCoins" className='pb-5'>
+            <section id="current3BestCoins" className="pb-5">
                 <h2 className="globalStatPageTitle ps-5 my-5">
                     Current 3 Best Coins
                 </h2>
@@ -161,19 +152,14 @@ export const Global = () => {
                                                 Price:
                                             </span>
                                             <span className="cryptoCardDataNum">
-                                                ${" "}
-                                                {Math.round(price * 100) / 100}
+                                                $ {millify(price)}
                                             </span>
                                             <br />
                                             <span className="cryptoCardData fs-6 ps-3">
                                                 Market Cap:
                                             </span>
                                             <span className="cryptoCardDataNum">
-                                                ${" "}
-                                                {Math.round(
-                                                    (marketCap / 1000000000) *
-                                                        100
-                                                ) / 100}
+                                                $ {millify(marketCap)}
                                             </span>
                                             <br />
                                             <span className="cryptoCardData fs-6 ps-3">
@@ -223,18 +209,25 @@ export const Global = () => {
                 </Container>
             </section>
 
-
             {/*Current 3 Newest Coins Section */}
-            <section id="current3NewestCoins" className='current3NewestCoinsSection'>
+            <section
+                id="current3NewestCoins"
+                className="current3NewestCoinsSection"
+            >
                 <h2 className="globalStatPageTitle ps-5 my-5">
                     Current 3 Newest Coins
                 </h2>
                 <Container className="currentNewest3CoinsContainer">
                     <Row className="cryptoCardRow">
                         {newest3CoinsData.map((singleCoin) => {
-                            const {name, price, marketCap, uuid, iconUrl} = singleCoin;
+                            const { name, price, marketCap, uuid, iconUrl } =
+                                singleCoin;
                             return (
-                                <Col xl key={uuid} className="cryptoCardCol my-2">
+                                <Col
+                                    xl
+                                    key={uuid}
+                                    className="cryptoCardCol my-2"
+                                >
                                     <div className="cryptoCard">
                                         <Col className="cryptoCardCol1 ps-4">
                                             <div className="cryptoCardNameDiv">
@@ -246,27 +239,22 @@ export const Global = () => {
                                                 Price:
                                             </span>
                                             <span className="cryptoCardDataNum">
-                                                $ {Math.round(price * 100) / 100}
+                                                $ {millify(price)}
                                             </span>
                                             <br />
                                             <span className="cryptoCardData fs-6 ps-3">
                                                 Market Cap:
                                             </span>
                                             <span className="cryptoCardDataNum">
-                                            ${" "}
-                                            {Math.round(
-                                                (marketCap / 1000000000) * 100
-                                            ) / 100}
+                                                $ {millify(marketCap)}
                                             </span>
                                             <br />
-                                            
                                         </Col>
                                         <Col className="cryptoCardCol2" xl={4}>
                                             <div className="cryptoCardIcon">
                                                 <img
                                                     width={80}
-                                                    src={iconUrl
-                                                    }
+                                                    src={iconUrl}
                                                 ></img>
                                             </div>
                                         </Col>
