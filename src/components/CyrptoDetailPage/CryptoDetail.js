@@ -308,7 +308,7 @@ export const CryptoDetail = () => {
             </section>
 
             <section className='my-5'>
-                <CryptoDetailChart coinName={singleCoinDetail?.name} coinHistoryData={coinHistoryData}/> 
+            <CryptoDetailChart coinName={singleCoinDetail?.name} coinHistoryData={coinHistoryData}/> 
             </section>
         </>
     );
