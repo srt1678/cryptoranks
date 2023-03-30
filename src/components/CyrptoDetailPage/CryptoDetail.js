@@ -20,7 +20,9 @@ import {
 } from "react-bootstrap-icons";
 import Card from "react-bootstrap/Card";
 import millify from "millify";
-import CryptoDetailChart from './CryptoDetailChart';
+import CryptoDetailChart from "./CryptoDetailChart";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 
 export const CryptoDetail = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -28,6 +30,9 @@ export const CryptoDetail = () => {
     const [coinHistoryData, setCoinHistoryData] = useState([]);
     const { selectSingleCoin, singleCoinDetail, setSingleCoinDetail } =
         useContext(AppContext);
+    const timeVariable = ["1h", "3h", "12h", "24h", "7d", "30d", "3m", "1y"];
+    const [selectTimePeriod, setSelectTimePeriod] = useState("24h");
+
     const options = {
         headers: {
             "x-access-token": apiKey,
@@ -40,7 +45,10 @@ export const CryptoDetail = () => {
         setSingleCoinDetail(result.data.coin);
         setIsLoading(false);
 
-        const response2 = await fetch(singleCoinUrl + selectSingleCoin + '/history', options);
+        const response2 = await fetch(
+            singleCoinUrl + selectSingleCoin + "/history",
+            options
+        );
         const result2 = await response2.json();
         setCoinHistoryData(result2.data.history);
         setIsLoading2(false);
@@ -49,6 +57,20 @@ export const CryptoDetail = () => {
     useEffect(() => {
         fetchSingleCoinData();
     }, [selectSingleCoin]);
+
+    useEffect(() => {
+        fetch(
+            singleCoinUrl +
+                selectSingleCoin +
+                "/history?timePeriod=" +
+                selectTimePeriod,
+            options
+        )
+            .then((response) => response.json())
+            .then((result) => {
+                setCoinHistoryData(result.data.history);
+            });
+    }, [selectTimePeriod]);
 
     if (isLoading || isLoading2) {
         return <div>Now Loading...</div>;
@@ -242,8 +264,12 @@ export const CryptoDetail = () => {
                                                 Aprroved Supply
                                             </span>
                                             <span style={{ float: "right" }}>
-                                                {singleCoinDetail.supply.confirmed? (<CheckCircleFill/>) : (<XCircleFill/>)}
-                                                
+                                                {singleCoinDetail.supply
+                                                    .confirmed ? (
+                                                    <CheckCircleFill />
+                                                ) : (
+                                                    <XCircleFill />
+                                                )}
                                             </span>
                                         </h5>
                                         <br />
@@ -260,10 +286,12 @@ export const CryptoDetail = () => {
                                             </span>
                                             <span style={{ float: "right" }}>
                                                 ${" "}
-                                                {!singleCoinDetail.supply.total? '0': millify(
-                                                    singleCoinDetail.supply
-                                                        .total
-                                                )}
+                                                {!singleCoinDetail.supply.total
+                                                    ? "0"
+                                                    : millify(
+                                                          singleCoinDetail
+                                                              .supply.total
+                                                      )}
                                             </span>
                                         </h5>
                                         <br />
@@ -277,10 +305,14 @@ export const CryptoDetail = () => {
                                             </span>
                                             <span style={{ float: "right" }}>
                                                 ${" "}
-                                                {!singleCoinDetail.supply.circulating? '0' : millify(
-                                                    singleCoinDetail.supply
-                                                        .circulating
-                                                )}
+                                                {!singleCoinDetail.supply
+                                                    .circulating
+                                                    ? "0"
+                                                    : millify(
+                                                          singleCoinDetail
+                                                              .supply
+                                                              .circulating
+                                                      )}
                                             </span>
                                         </h5>
                                         <br />
@@ -300,15 +332,43 @@ export const CryptoDetail = () => {
                     style={{ width: "80%" }}
                 >
                     <Card.Body>
-                        <h5>
-                            {singleCoinDetail.description}
-                        </h5>
+                        <h5>{singleCoinDetail.description}</h5>
                     </Card.Body>
                 </Card>
             </section>
 
-            <section className='my-5'>
-            <CryptoDetailChart coinName={singleCoinDetail?.name} coinHistoryData={coinHistoryData}/> 
+            <section className="my-5">
+                <Dropdown style={{ marginLeft: "11rem" }}>
+                    <Dropdown.Toggle
+                        id="dropdown-button-dark-example1"
+                        variant="secondary"
+                    >
+                        Time Period: {selectTimePeriod}
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu variant="dark">
+                        {timeVariable.map((selectedTime) => {
+                            return (
+                                <Dropdown.Item
+                                    disabled={
+                                        selectedTime === selectTimePeriod
+                                            ? true
+                                            : false
+                                    }
+                                    onClick={() =>
+                                        setSelectTimePeriod(selectedTime)
+                                    }
+                                >
+                                    {selectedTime}
+                                </Dropdown.Item>
+                            );
+                        })}
+                    </Dropdown.Menu>
+                </Dropdown>
+                <CryptoDetailChart
+                    coinName={singleCoinDetail?.name}
+                    coinHistoryData={coinHistoryData}
+                />
             </section>
         </>
     );
