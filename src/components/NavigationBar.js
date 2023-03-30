@@ -1,6 +1,6 @@
-import { Container, Nav, Navbar, Image } from "react-bootstrap";
+import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import cryptoLogo from "../img/cryptocurrency.png";
+import websiteLogo from "../img/cryptocurrency.png";
 import { HouseFill, Globe, Lightbulb } from "react-bootstrap-icons";
 
 export const NavigationBar = () => {
@@ -9,7 +9,7 @@ export const NavigationBar = () => {
             <Container className='navBarContainer'>
                 <Navbar.Brand href="/" className="fs-1">
                     <img
-                        src={cryptoLogo}
+                        src={websiteLogo}
                         alt="Crypto Logo"
                         className="navBarLogo img-fluid pe-4"
                         width={100}

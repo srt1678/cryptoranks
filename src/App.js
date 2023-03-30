@@ -15,8 +15,8 @@ function App() {
     const [globalStatData, setGlobalStatData] = useState(null);
     const [best3CoinsData, setBest3CoinsData] = useState([]);
     const [newest3CoinsData, setNewest3CoinsData] = useState([]);
-    const [newsData, setNewsData] = useState([]);
     const [singleCoinDetail, setSingleCoinDetail] = useState(null);
+    const [selectTimePeriod, setSelectTimePeriod] = useState("24h");
 
     return (
         <AppContext.Provider
@@ -31,10 +31,10 @@ function App() {
                 setBest3CoinsData,
                 newest3CoinsData,
                 setNewest3CoinsData,
-                newsData,
-                setNewsData,
                 singleCoinDetail,
-                setSingleCoinDetail
+                setSingleCoinDetail,
+                selectTimePeriod,
+                setSelectTimePeriod
             }}
         >
             <BrowserRouter>

@@ -1,13 +1,12 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useState } from "react";
 import { newsUrl, newsApiKey } from "../../Api.js";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { AppContext } from "../../App";
 import img from '../../img/No_Image_Available.jpg';
 
 export const News = () => {
-    const { newsData, setNewsData } = useContext(AppContext);
+    const [newsData, setNewsData] = useState([]);
 
     const options = {
         headers: {
