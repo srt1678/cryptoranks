@@ -152,14 +152,18 @@ export const Global = () => {
                                                 Price:
                                             </span>
                                             <span className="cryptoCardDataNum">
-                                                $ {millify(price)}
+                                                ${" "}
+                                                {!price ? "0" : millify(price)}
                                             </span>
                                             <br />
                                             <span className="cryptoCardData fs-6 ps-3">
                                                 Market Cap:
                                             </span>
                                             <span className="cryptoCardDataNum">
-                                                $ {millify(marketCap)}
+                                                ${" "}
+                                                {!marketCap
+                                                    ? "0"
+                                                    : millify(marketCap)}
                                             </span>
                                             <br />
                                             <span className="cryptoCardData fs-6 ps-3">
@@ -239,14 +243,18 @@ export const Global = () => {
                                                 Price:
                                             </span>
                                             <span className="cryptoCardDataNum">
-                                                $ {millify(price)}
+                                                ${" "}
+                                                {!price ? "0" : millify(price)}
                                             </span>
                                             <br />
                                             <span className="cryptoCardData fs-6 ps-3">
                                                 Market Cap:
                                             </span>
                                             <span className="cryptoCardDataNum">
-                                                $ {millify(marketCap)}
+                                                ${" "}
+                                                {!marketCap
+                                                    ? "0"
+                                                    : millify(marketCap)}
                                             </span>
                                             <br />
                                         </Col>

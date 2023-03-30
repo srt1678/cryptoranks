@@ -20,10 +20,12 @@ import {
 } from "react-bootstrap-icons";
 import Card from "react-bootstrap/Card";
 import millify from "millify";
-import img from "../../img/bitcoin-btc-logo.png";
+import CryptoDetailChart from './CryptoDetailChart';
 
 export const CryptoDetail = () => {
     const [isLoading, setIsLoading] = useState(true);
+    const [isLoading2, setIsLoading2] = useState(true);
+    const [coinHistoryData, setCoinHistoryData] = useState([]);
     const { selectSingleCoin, singleCoinDetail, setSingleCoinDetail } =
         useContext(AppContext);
     const options = {
@@ -32,29 +34,23 @@ export const CryptoDetail = () => {
         },
     };
 
-    /*
     async function fetchSingleCoinData() {
-        const response = await fetch(singleCoinUrl + uuid, options);
+        const response = await fetch(singleCoinUrl + selectSingleCoin, options);
         const result = await response.json();
         setSingleCoinDetail(result.data.coin);
+        setIsLoading(false);
+
+        const response2 = await fetch(singleCoinUrl + selectSingleCoin + '/history', options);
+        const result2 = await response2.json();
+        setCoinHistoryData(result2.data.history);
+        setIsLoading2(false);
     }
-    */
 
     useEffect(() => {
-        const fetchSingleCoinData = async () => {
-            const response = await fetch(
-                singleCoinUrl + selectSingleCoin,
-                options
-            );
-            const result = await response.json();
-            setSingleCoinDetail(result.data.coin);
-            setIsLoading(false);
-        };
         fetchSingleCoinData();
-        console.log(selectSingleCoin);
     }, [selectSingleCoin]);
 
-    if (isLoading) {
+    if (isLoading || isLoading2) {
         return <div>Now Loading...</div>;
     }
     return (
@@ -264,7 +260,7 @@ export const CryptoDetail = () => {
                                             </span>
                                             <span style={{ float: "right" }}>
                                                 ${" "}
-                                                {millify(
+                                                {!singleCoinDetail.supply.total? '0': millify(
                                                     singleCoinDetail.supply
                                                         .total
                                                 )}
@@ -281,7 +277,7 @@ export const CryptoDetail = () => {
                                             </span>
                                             <span style={{ float: "right" }}>
                                                 ${" "}
-                                                {millify(
+                                                {!singleCoinDetail.supply.circulating? '0' : millify(
                                                     singleCoinDetail.supply
                                                         .circulating
                                                 )}
@@ -295,6 +291,7 @@ export const CryptoDetail = () => {
                     </Row>
                 </Container>
             </section>
+
             <section className="cryptoDetailDescription pb-5">
                 <Card
                     border="light"
@@ -309,18 +306,10 @@ export const CryptoDetail = () => {
                     </Card.Body>
                 </Card>
             </section>
+
+            <section className='my-5'>
+                <CryptoDetailChart coinName={singleCoinDetail?.name} coinHistoryData={coinHistoryData}/> 
+            </section>
         </>
     );
 };
-
-/*
-fetch("https://api.coinranking.com/v2/coin/Qwsogvtv82FCd", options)
-        .then((response) => response.json())
-        .then((result) => console.log("Get Coin: ", result));
-    fetch(`https://api.coinranking.com/v2/coin/Qwsogvtv82FCd/history`, options)
-        .then((response) => response.json())
-        .then((result) => console.log("Get coin price history 24h: ", result));
-    fetch(`https://api.coinranking.com/v2/coin/Qwsogvtv82FCd/history?timePeriod=1y`, options)
-        .then((response) => response.json())
-        .then((result) => console.log("Get coin price history 1y: ", result));
-*/
