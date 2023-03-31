@@ -22,6 +22,7 @@ const DropDownTimePeriod = () => {
                                 selectedTime === selectTimePeriod ? true : false
                             }
                             onClick={() => setSelectTimePeriod(selectedTime)}
+                            key={selectedTime}
                         >
                             {selectedTime}
                         </Dropdown.Item>

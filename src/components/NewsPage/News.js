@@ -31,7 +31,7 @@ export const News = () => {
                 {newsData.slice(0, 10).map((singleNews) => {
                     const {author, description, publishedAt, title, url, urlToImage} = singleNews;
                     return(
-                        <Col>
+                        <Col key={title}>
                     <a
                         href={url}
                         target="_blank"
