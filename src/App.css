@@ -355,3 +355,9 @@ h5 {
         margin-right: 1rem;
     }
 }
+/*-------------------------Pie Chart-------------------------*/
+.pieChartContainer{
+    position: relative;
+    height: 70vh;
+    width: auto;
+}

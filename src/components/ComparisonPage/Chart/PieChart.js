@@ -1,10 +1,52 @@
-import React from 'react'
+import React, { useState, useEffect, useContext } from "react";
+import { AppContext } from "../../../App";
+import { Pie } from "react-chartjs-2";
+import Chart from "chart.js/auto";
+import { color, color2 } from "./ChartOverview";
 
 //get Coin
-const PieChart = () => {
-  return (
-    <div>PieChart</div>
-  )
-}
+const PieChart = (props) => {
+    const chartDataOverview = {
+        labels: props.chartData.map((data) => data.name + `Price in USD`),
+        datasets: [
+            {
+                label: props.chartData.name + `Price in USD`,
+                data: props.chartData.map((data) => data.price),
+                backgroundColor: color,
+                borderColor: ["white"],
+                borderWidth: 2,
+                hoverOffset: 4,
+            },
+        ],
+    };
+    const [coinChartData, setCoinChartData] = useState(chartDataOverview);
+    useEffect(() => {
+        setCoinChartData(chartDataOverview);
+    }, [props.chartData]);
+    return (
+        <>
+            <div className='pieChartContainer mx-5 mb-5'>
+                <Pie
+                    data={coinChartData}
+                    radius={50}
+                    options={{
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: 'white',
+                                    font: {
+                                        size: 18
+                                    }
+                                }
+                            }
+                        }
+                    }}
+                ></Pie>
+            </div>
+        </>
+    );
+};
 
-export default PieChart
+export default PieChart;
