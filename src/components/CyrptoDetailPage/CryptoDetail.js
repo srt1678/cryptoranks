@@ -61,7 +61,7 @@ export const CryptoDetail = () => {
     }, [selectTimePeriod]);
 
     if (isLoading || isLoading2) {
-        return <div>Now Loading...</div>;
+        return <div style={{display: 'flex', justifyContent: 'center'}} className='my-5'><h1>Now Loading...</h1></div>;
     }
     return (
         <>

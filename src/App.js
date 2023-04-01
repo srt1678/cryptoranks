@@ -5,6 +5,7 @@ import { Home } from "./components/Homepage/Home";
 import { Global } from "./components/GlobalPage/Global";
 import { News } from "./components/NewsPage/News";
 import { CryptoDetail } from './components/CyrptoDetailPage/CryptoDetail'
+import { Comparison } from './components/ComparisonPage/Comparison'
 
 import { useState, createContext } from "react";
 export const AppContext = createContext();
@@ -17,6 +18,9 @@ function App() {
     const [newest3CoinsData, setNewest3CoinsData] = useState([]);
     const [singleCoinDetail, setSingleCoinDetail] = useState(null);
     const [selectTimePeriod, setSelectTimePeriod] = useState("24h");
+    const [displayCoinChartList, setDisplayCoinChartList] = useState([]);
+    const [coinChartAlert, setCoinChartAlert] = useState(false);
+    const [chartData, setChartData] = useState([]);
 
     return (
         <AppContext.Provider
@@ -34,7 +38,13 @@ function App() {
                 singleCoinDetail,
                 setSingleCoinDetail,
                 selectTimePeriod,
-                setSelectTimePeriod
+                setSelectTimePeriod,
+                displayCoinChartList,
+                setDisplayCoinChartList,
+                coinChartAlert,
+                setCoinChartAlert,
+                chartData,
+                setChartData
             }}
         >
             <BrowserRouter>
@@ -43,6 +53,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/global" element={<Global />} />
                     <Route path="/news" element={<News />} />
+                    <Route path="/comparison" element={<Comparison />} />
                     <Route path="/detail/:uuid" element={<CryptoDetail/>} />
                 </Routes>
             </BrowserRouter>

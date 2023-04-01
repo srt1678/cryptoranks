@@ -1,7 +1,7 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import websiteLogo from "../img/cryptocurrency.png";
-import { HouseFill, Globe, Lightbulb } from "react-bootstrap-icons";
+import { HouseFill, Globe, Lightbulb, PieChart } from "react-bootstrap-icons";
 
 export const NavigationBar = () => {
     return (
@@ -27,9 +27,13 @@ export const NavigationBar = () => {
                             <Globe className='me-2 mb-1'/>
                             Global
                         </Nav.Link>
-                        <Nav.Link as={Link} to="/News" className="me-4">
+                        <Nav.Link as={Link} to="/news" className="me-4">
                             <Lightbulb className='me-2 mb-1'/>
                             News
+                        </Nav.Link>
+                        <Nav.Link as={Link} to="/comparison" className="me-4">
+                            <PieChart className='me-2 mb-1'/>
+                            Comparison
                         </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
