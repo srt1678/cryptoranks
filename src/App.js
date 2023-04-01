@@ -21,6 +21,7 @@ function App() {
     const [displayCoinChartList, setDisplayCoinChartList] = useState([]);
     const [coinChartAlert, setCoinChartAlert] = useState(false);
     const [chartData, setChartData] = useState([]);
+    const [chartDataPriceHistory, setChartDataPriceHistory] = useState([])
 
     return (
         <AppContext.Provider
@@ -44,7 +45,9 @@ function App() {
                 coinChartAlert,
                 setCoinChartAlert,
                 chartData,
-                setChartData
+                setChartData,
+                chartDataPriceHistory,
+                setChartDataPriceHistory
             }}
         >
             <BrowserRouter>

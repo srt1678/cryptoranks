@@ -15,7 +15,7 @@ const CryptoDetailChart = (props) => {
         datasets: [
             {
                 label: props.coinName + ` Price in USD`,
-                data: props.coinHistoryData.map((data) => data.price),
+                data: props.coinHistoryData.reverse().map((data) => data.price),
                 backgroundColor: ["white"],
                 fill: false,
                 borderColor: ["white"],

@@ -15,13 +15,13 @@ const CoinChartSearchBar = () => {
         },
     };
 
-    const addCoinToChart = (uuid) => {
+    const addCoinToChart = (uuid, name) => {
         if (displayCoinChartList >= 5 || displayCoinChartList.includes(uuid)) {
             setCoinChartAlert(true)
         }else {
             setDisplayCoinChartList((displayCoinChartList) => [
                 ...displayCoinChartList,
-                uuid,
+                {'uuid': uuid, 'name': name},
             ]);
         }
     };
@@ -36,7 +36,7 @@ const CoinChartSearchBar = () => {
                             key={result.symbol}
                             className="dropdown-item"
                             onClick={() => {
-                                addCoinToChart(result.uuid);
+                                addCoinToChart(result.uuid, result.name);
                                 setCoinChartSearch("");
                             }}
                         >
