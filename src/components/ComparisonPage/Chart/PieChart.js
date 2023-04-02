@@ -25,7 +25,7 @@ const PieChart = (props) => {
     }, [props.chartData]);
     return (
         <>
-            <div className='pieChartContainer mx-5 mb-5'>
+            <div className='pieChartContainer mx-5 mb-5 mt-3'>
                 <Pie
                     data={coinChartData}
                     radius={50}

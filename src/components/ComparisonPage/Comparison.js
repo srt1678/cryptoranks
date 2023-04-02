@@ -12,21 +12,24 @@ import {
     PolarAreaChart,
     RadarChart,
 } from "./Chart/ChartOverview";
+import { Button } from "react-bootstrap";
+import { XCircleFill } from "react-bootstrap-icons";
 
 export const Comparison = () => {
-    const [selectChartType, setSelectChartType] = useState("Pie");
+    const [selectChartType, setSelectChartType] = useState("Line");
     const [isLoading, setIsLoading] = useState(true);
     const [isLoading2, setIsLoading2] = useState(true);
     const {
         coinChartAlert,
         displayCoinChartList,
+        setDisplayCoinChartList,
         chartDataPriceHistory,
         setChartDataPriceHistory,
         chartData,
         setChartData,
     } = useContext(AppContext);
     const chartType = ["Line", "Pie", "Bar", "Doughnut", "Polar Area", "Radar"];
-    console.log("chartData: ", chartData);
+
     const options = {
         headers: {
             "x-access-token": apiKey,
@@ -116,6 +119,12 @@ export const Comparison = () => {
                 return <div>Error</div>;
         }
     };
+
+    const removeCoin = (uuid) => {
+        const updateCoinList = displayCoinChartList.filter((singleCoin) => singleCoin.uuid !== uuid);
+        setDisplayCoinChartList(updateCoinList);
+    }
+
     if (isLoading || isLoading2) {
         return (
             <div
@@ -139,34 +148,57 @@ export const Comparison = () => {
                 </div>
             ) : (
                 <>
-                    <Dropdown style={{ marginLeft: "11rem" }}>
-                        <Dropdown.Toggle
-                            id="dropdown-button-dark-example1"
-                            variant="secondary"
+                    <div
+                        style={{ display: "inline-block",marginLeft: "11rem", marginRight: "5rem" }}
+                    >
+                        <Dropdown
                         >
-                            Chart Type: {selectChartType}
-                        </Dropdown.Toggle>
+                            <Dropdown.Toggle
+                                id="dropdown-button-dark-example1"
+                                variant="secondary"
+                            >
+                                Chart Type: {selectChartType}
+                            </Dropdown.Toggle>
 
-                        <Dropdown.Menu variant="dark">
-                            {chartType.map((singleChart) => {
-                                return (
-                                    <Dropdown.Item
-                                        disabled={
-                                            singleChart === selectChartType
-                                                ? true
-                                                : false
-                                        }
-                                        key={singleChart}
-                                        onClick={() =>
-                                            setSelectChartType(singleChart)
-                                        }
-                                    >
-                                        {singleChart}
-                                    </Dropdown.Item>
-                                );
-                            })}
-                        </Dropdown.Menu>
-                    </Dropdown>
+                            <Dropdown.Menu variant="dark">
+                                {chartType.map((singleChart) => {
+                                    return (
+                                        <Dropdown.Item
+                                            disabled={
+                                                singleChart === selectChartType
+                                                    ? true
+                                                    : false
+                                            }
+                                            key={singleChart}
+                                            onClick={() =>
+                                                setSelectChartType(singleChart)
+                                            }
+                                        >
+                                            {singleChart}
+                                        </Dropdown.Item>
+                                    );
+                                })}
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </div>
+                    <div style={{ display: "inline-block" }}>
+                        {displayCoinChartList.map((singleCoin) => {
+                            return (
+                                <Button
+                                    variant="secondary"
+                                    key={singleCoin.name}
+                                    style={{ marginRight: "2rem" }}
+                                    onClick={() => removeCoin(singleCoin.uuid)}
+                                >
+                                    <XCircleFill
+                                        className="me-2 mb-1"
+                                        size={20}
+                                    />
+                                    {singleCoin.name}
+                                </Button>
+                            );
+                        })}
+                    </div>
                     {chartToRender()}
                 </>
             )}

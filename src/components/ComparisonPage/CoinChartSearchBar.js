@@ -16,7 +16,7 @@ const CoinChartSearchBar = () => {
     };
 
     const addCoinToChart = (uuid, name) => {
-        if (displayCoinChartList >= 5 || displayCoinChartList.includes(uuid)) {
+        if (displayCoinChartList >= 5 || displayCoinChartList.find(e => e['uuid'] === uuid)) {
             setCoinChartAlert(true)
         }else {
             setDisplayCoinChartList((displayCoinChartList) => [
