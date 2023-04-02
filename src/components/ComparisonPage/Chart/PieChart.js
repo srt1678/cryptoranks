@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
-import { AppContext } from "../../../App";
+import React, { useState, useEffect} from "react";
 import { Pie } from "react-chartjs-2";
 import Chart from "chart.js/auto";
-import { color, color2 } from "./ChartOverview";
+import { color} from "./ChartOverview";
 
 //get Coin
 const PieChart = (props) => {

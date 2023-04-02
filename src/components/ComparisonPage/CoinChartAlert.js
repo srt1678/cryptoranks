@@ -1,7 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import Alert from "react-bootstrap/Alert";
 import { AppContext } from "../../App";
-import Button from "react-bootstrap/Button";
 
 const CoinChartAlert = () => {
     const { setCoinChartAlert } = useContext(AppContext);

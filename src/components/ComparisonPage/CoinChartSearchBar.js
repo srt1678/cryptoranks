@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { apiKey, searchCoinUrl } from "../../Api";
 import { AppContext } from "../../App";
-import Alert from 'react-bootstrap/Alert';
 
 const CoinChartSearchBar = () => {
     const [coinChartSearch, setCoinChartSearch] = useState("");
