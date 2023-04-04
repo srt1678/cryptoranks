@@ -10,7 +10,6 @@ import {
     BarChart,
     DoughnutChart,
     PolarAreaChart,
-    RadarChart,
 } from "./Chart/ChartOverview";
 import { Button } from "react-bootstrap";
 import { XCircleFill } from "react-bootstrap-icons";
@@ -19,7 +18,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 export const Comparison = () => {
-    const [selectChartType, setSelectChartType] = useState("Bar");
+    const [selectChartType, setSelectChartType] = useState("Line");
     const [isLoading, setIsLoading] = useState(true);
     const [isLoading2, setIsLoading2] = useState(true);
     const {
@@ -31,7 +30,7 @@ export const Comparison = () => {
         chartData,
         setChartData,
     } = useContext(AppContext);
-    const chartType = ["Line", "Pie", "Bar", "Doughnut", "Polar Area", "Radar"];
+    const chartType = ["Line", "Pie", "Bar", "Doughnut", "Polar Area"];
 
     let priceHistoryMap = new Map();
     let tempPriceHistory = [];
@@ -113,13 +112,6 @@ export const Comparison = () => {
                         chartData={chartData}
                     />
                 );
-            case "Radar":
-                return (
-                    <RadarChart
-                        displayCoinChartList={displayCoinChartList}
-                        chartData={chartData}
-                    />
-                );
             default:
                 return <div>Error</div>;
         }
@@ -149,7 +141,7 @@ export const Comparison = () => {
             {displayCoinChartList.length === 0 ? (
                 <div
                     style={{ display: "flex", justifyContent: "center" }}
-                    className="my-5"
+                    className="my-5 ms-5"
                 >
                     <h1>Please search and add coins to display chart</h1>
                 </div>

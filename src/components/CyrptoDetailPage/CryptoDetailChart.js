@@ -36,9 +36,11 @@ const CryptoDetailChart = (props) => {
     if (coinChartData.length === 0) {
         return <div>Now Loading Chart</div>;
     }
+
     return (
         <>
             <div className="cryptoDetailChartContainer">
+                <img className='bg-img' src={props.img}></img>
                 <Line
                     data={coinChartData}
                     options={{
@@ -52,7 +54,7 @@ const CryptoDetailChart = (props) => {
                                         size: 18,
                                     },
                                 },
-                            },
+                            }
                         },
                         scales: {
                             x1: {

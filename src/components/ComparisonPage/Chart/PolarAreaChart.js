@@ -3,7 +3,6 @@ import { PolarArea } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import { color2 } from "./ChartOverview";
 
-//get Coin
 const PolarAreaChart = (props) => {
     const chartDataOverview = {
         labels: props.chartData.map((data) => data.name + ` Price in USD`),

@@ -5,9 +5,17 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import millify from "millify";
 import { ChevronUp, ChevronDown } from "react-bootstrap-icons";
+import { useNavigate } from "react-router-dom";
 
 const Global3BestCoins = () => {
-    const { best3CoinsData } = useContext(AppContext);
+    const { setSelectSingleCoin, best3CoinsData } = useContext(AppContext);
+    const navigate = useNavigate();
+
+    const handleCryptoSelect = (uuid) => {
+        setSelectSingleCoin(uuid);
+        navigate(`../detail/${uuid}`);
+    };
+
     return (
         <Container className="currentBest3CoinsContainer">
             <Row className="cryptoCardRow">
@@ -16,7 +24,7 @@ const Global3BestCoins = () => {
                         singleCoin;
                     return (
                         <Col xl key={uuid} className="cryptoCardCol my-2">
-                            <div className="cryptoCard">
+                            <div className="cryptoCard" onClick={() => handleCryptoSelect(singleCoin.uuid)}>
                                 <Col className="cryptoCardCol1 ps-4">
                                     <div className="cryptoCardNameDiv">
                                         <h3 className="cryptoCardName my-2">

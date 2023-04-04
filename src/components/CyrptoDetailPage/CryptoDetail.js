@@ -87,6 +87,7 @@ export const CryptoDetail = () => {
                 <CryptoDetailChart
                     coinName={singleCoinDetail?.name}
                     coinHistoryData={coinHistoryData}
+                    img={singleCoinDetail.iconUrl}
                 />
             </section>
         </>
