@@ -8,7 +8,7 @@ const LineChart = (props) => {
     let tempData = [];
 
     const tempSetPriceHistory = () => {
-        props.chartDataPriceHistory?.slice().reverse().map((entry, index) => {
+        props.chartDataPriceHistory.map((entry, index) => {
             tempData.push({
                 label: props.displayCoinChartList[index].name + ` Price in USD`,
                 data: entry.slice().reverse().map((data) => data.price),

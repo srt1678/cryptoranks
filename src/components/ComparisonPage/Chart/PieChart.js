@@ -3,7 +3,6 @@ import { Pie } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import { color} from "./ChartOverview";
 
-//get Coin
 const PieChart = (props) => {
     const chartDataOverview = {
         labels: props.chartData.map((data) => data.name + `Price in USD`),

@@ -19,7 +19,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 export const Comparison = () => {
-    const [selectChartType, setSelectChartType] = useState("Line");
+    const [selectChartType, setSelectChartType] = useState("Bar");
     const [isLoading, setIsLoading] = useState(true);
     const [isLoading2, setIsLoading2] = useState(true);
     const {
@@ -94,7 +94,7 @@ export const Comparison = () => {
                 return (
                     <BarChart
                         displayCoinChartList={displayCoinChartList}
-                        chartData={chartData}
+                        chartDataPriceHistory={chartDataPriceHistory}
                     />
                 );
             case "Doughnut":
