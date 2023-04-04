@@ -5,7 +5,7 @@ import { color} from "./ChartOverview";
 
 const PieChart = (props) => {
     const chartDataOverview = {
-        labels: props.chartData.map((data) => data.name + `Price in USD`),
+        labels: props.chartData.map((data) => data.name + ` Price in USD`),
         datasets: [
             {
                 label: props.chartData.name + `Price in USD`,
