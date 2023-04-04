@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { apiKey, searchCoinUrl } from "../../Api";
+import { searchCoinUrl, options } from "../../Api";
 import { AppContext } from "../../App";
 
 const CoinChartSearchBar = () => {
@@ -8,14 +8,8 @@ const CoinChartSearchBar = () => {
     const { displayCoinChartList, setDisplayCoinChartList, setCoinChartAlert } =
         useContext(AppContext);
 
-    const options = {
-        headers: {
-            "x-access-token": `${apiKey}`,
-        },
-    };
-
     const addCoinToChart = (uuid, name) => {
-        if (displayCoinChartList >= 5 || displayCoinChartList.find(e => e['uuid'] === uuid)) {
+        if (displayCoinChartList.length >= 5 || displayCoinChartList.find(e => e['uuid'] === uuid)) {
             setCoinChartAlert(true)
         }else {
             setDisplayCoinChartList((displayCoinChartList) => [

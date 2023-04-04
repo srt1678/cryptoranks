@@ -8,27 +8,24 @@ const BarChart = (props) => {
     let tempData = [];
 
     const tempSetPriceHistory = () => {
-        props.chartDataPriceHistory
-            .map((entry, index) => {
-                tempData.push({
-                    label:
-                        props.displayCoinChartList[index].name +
-                        ` Price in USD`,
-                    data: entry
-                        .slice()
-                        .reverse()
-                        .map((data, index) => {
-                            if (index % 10 === 0) {
-                                return data.price;
-                            } else {
-                                return null;
-                            }
-                        }),
-                    backgroundColor: color[index],
-                    xAxisID: "x1",
-                    yAxisID: "y1",
-                });
+        props.chartDataPriceHistory.map((entry, index) => {
+            tempData.push({
+                label: props.displayCoinChartList[index].name + ` Price in USD`,
+                data: entry
+                    .slice()
+                    .reverse()
+                    .map((data, index) => {
+                        if (index % 10 === 0) {
+                            return data.price;
+                        } else {
+                            return null;
+                        }
+                    }),
+                backgroundColor: color[index],
+                xAxisID: "x1",
+                yAxisID: "y1",
             });
+        });
         setIsLoading(false);
     };
     const chartDataOverview = {
@@ -52,8 +49,6 @@ const BarChart = (props) => {
     useEffect(() => {
         tempSetPriceHistory();
         setCoinChartData(chartDataOverview);
-        console.log('displayCoinChartList ', props.displayCoinChartList)
-        console.log('chartDataPriceHistory ', props.chartDataPriceHistory)
     }, [props.chartDataPriceHistory]);
 
     if (isLoading) {
@@ -100,13 +95,13 @@ const BarChart = (props) => {
                                 },
                                 grid: {
                                     color: "rgba(98, 98, 98, 0.8)",
-                                }
+                                    
+                                },
                             },
                         },
                         layout: {
                             padding: {
                                 right: 15,
-                                
                             },
                         },
                     }}

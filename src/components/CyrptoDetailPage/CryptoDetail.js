@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { AppContext } from "../../App";
-import { apiKey, singleCoinUrl } from "../../Api";
+import { singleCoinUrl, options } from "../../Api";
 import CryptoDetailCol1 from "./CryptoDetailCol1";
 import CryptoDetailCol2 from "./CryptoDetailCol2";
 import CryptoDetailCol3 from "./CryptoDetailCol3";
@@ -20,12 +20,6 @@ export const CryptoDetail = () => {
         setSingleCoinDetail,
         selectTimePeriod
     } = useContext(AppContext);
-
-    const options = {
-        headers: {
-            "x-access-token": apiKey,
-        },
-    };
 
     async function fetchSingleCoinData() {
         const response = await fetch(singleCoinUrl + selectSingleCoin, options);

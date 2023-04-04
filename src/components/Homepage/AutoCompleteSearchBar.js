@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { apiKey, searchCoinUrl } from "../../Api";
+import { searchCoinUrl, options } from "../../Api";
 import { AppContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 
@@ -8,12 +8,6 @@ const AutoCompleteSearchBar = () => {
     const [result, setResult] = useState([]);
     const { setSelectSingleCoin} = useContext(AppContext);
     const navigate = useNavigate();
-
-    const options = {
-        headers: {
-            "x-access-token": `${apiKey}`,
-        },
-    };
 
     const handleCryptoSelect = (uuid) => {
         setSelectSingleCoin(uuid);
@@ -39,7 +33,6 @@ const AutoCompleteSearchBar = () => {
         const fetchSearchData = async () => {
             const response = await fetch(searchCoinUrl + search, options);
             const result = await response.json();
-            console.log(result.data.coins);
             if (isMounted) {
                 setResult(result.data.coins);
             }

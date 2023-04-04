@@ -6,3 +6,9 @@ export const searchCoinUrl = "https://api.coinranking.com/v2/search-suggestions?
 
 export const newsApiKey = process.env.REACT_APP_API_KEY_NEWS;
 export const newsUrl = 'everything?q=crypto&apiKey=';
+
+export const options = {
+    headers: {
+        "x-access-token": apiKey,
+    },
+};

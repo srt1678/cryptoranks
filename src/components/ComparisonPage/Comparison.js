@@ -3,7 +3,7 @@ import { AppContext } from "../../App";
 import Dropdown from "react-bootstrap/Dropdown";
 import CoinChartSearchBar from "./CoinChartSearchBar";
 import CoinChartAlert from "./CoinChartAlert";
-import { apiKey, singleCoinUrl } from "../../Api";
+import { singleCoinUrl, options } from "../../Api";
 import {
     LineChart,
     PieChart,
@@ -33,13 +33,9 @@ export const Comparison = () => {
     } = useContext(AppContext);
     const chartType = ["Line", "Pie", "Bar", "Doughnut", "Polar Area", "Radar"];
 
-    const options = {
-        headers: {
-            "x-access-token": apiKey,
-        },
-    };
-
+    let priceHistoryMap = new Map();
     let tempPriceHistory = [];
+    let coinOverallMap = new Map();
     let tempCoinOverall = [];
     const fetchPriceHistoryData = async () => {
         await Promise.all(
@@ -49,9 +45,12 @@ export const Comparison = () => {
                     options
                 );
                 const result = await response.json();
-                tempPriceHistory.push(result.data.history);
+                priceHistoryMap.set(singleCoin.uuid, result.data.history);
             })
         );
+        displayCoinChartList.map((singleCoin) => {
+            tempPriceHistory.push(priceHistoryMap.get(singleCoin.uuid));
+        })
         setChartDataPriceHistory(tempPriceHistory);
         setIsLoading(false);
     };
@@ -63,9 +62,12 @@ export const Comparison = () => {
                     options
                 );
                 const result = await response.json();
-                tempCoinOverall.push(result.data.coin);
+                coinOverallMap.set(singleCoin.uuid, result.data.coin);
             })
         );
+        displayCoinChartList.map((singleCoin) => {
+            tempCoinOverall.push(coinOverallMap.get(singleCoin.uuid));
+        })
         setChartData(tempCoinOverall);
         setIsLoading2(false);
     };

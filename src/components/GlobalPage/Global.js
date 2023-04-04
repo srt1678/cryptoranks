@@ -1,4 +1,4 @@
-import { apiKey, globalStatsUrl, singleCoinUrl } from "../../Api.js";
+import { globalStatsUrl, singleCoinUrl, options } from "../../Api.js";
 import React, { useEffect, useContext } from "react";
 import { AppContext } from "../../App";
 import GlobalStat from "./GlobalStat.js";
@@ -12,12 +12,6 @@ export const Global = () => {
         setBest3CoinsData,
         setNewest3CoinsData,
     } = useContext(AppContext);
-
-    const options = {
-        headers: {
-            "x-access-token": `${apiKey}`,
-        },
-    };
 
     let temp3BestCoinsArray = [];
     let temp3NewestCoinsArray = [];
